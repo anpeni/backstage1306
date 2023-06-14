@@ -44,7 +44,8 @@ integrations:
     - host: github.com
       # This is a Personal Access Token or PAT from GitHub. You can find out how to generate this token, and more information
       # about setting up the GitHub integration here: https://backstage.io/docs/getting-started/configuration#setting-up-a-github-integration
-      token: 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
+      token: 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
+
     ### Example for how to add your GitHub Enterprise instance using the API:
     # - host: ghe.example.net
     #   apiBaseUrl: https://ghe.example.net/api/v3
@@ -81,7 +82,7 @@ auth:
       development:
         metadataUrl: https://example.com/.well-known/openid-configuration
         clientId: ${AUTH_MY_CLIENT_ID}
-        clientSecret: ${AUTH_MY_CLIENT_SECRET}     
+        clientSecret: ${SECRET_BACKSTAGE_OAUTH_CLIENT_SECRET}     
 
 scaffolder:
   defaultAuthor:
@@ -98,8 +99,10 @@ catalog:
     - allow: [Component, System, API, Resource, Location]
   locations:
     # Local example data, file locations are relative to the backend process, typically `packages/backend`
-    - type: file
-      target: ../../examples/entities.yaml
+    - type: url
+      target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/components/www-artist-component.yaml
+      rules:
+        - allow: [Component, System, API, Resource, Location]
 
     # Local example template
     - type: file
