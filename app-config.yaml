@@ -27,18 +27,22 @@ backend:
     credentials: true
   # This is for local development only, it is not recommended to use this in production
   # The production database configuration is stored in app-config.production.yaml
+  # database:
+  #   client: pg
+  #   connection: 
+  #   # config options: https://node-postgres.com/apis/client
+  #     host: 127.0.0.1
+  #     port: 5432
+  #     user: postgres
+  #     password: '12345'
+  # cache:
+  #   store: memory
+  # workingDirectory: /tmp # Use this to configure a working directory for the scaffolder, defaults to the OS temp-dir
   database:
-    client: pg
-    connection: 
-    # config options: https://node-postgres.com/apis/client
-      host: 127.0.0.1
-      port: 5432
-      user: postgres
-      password: '12345'
+    client: better-sqlite3
+    connection: ':memory:'
   cache:
     store: memory
-  # workingDirectory: /tmp # Use this to configure a working directory for the scaffolder, defaults to the OS temp-dir
-
 integrations:
   github:
     - host: github.com
@@ -80,8 +84,8 @@ auth:
     idDex:
       development:
         metadataUrl: https://example.com/.well-known/openid-configuration
-        clientId: ${AUTH_MY_CLIENT_ID}
-        clientSecret: ${AUTH_MY_CLIENT_SECRET}     
+        clientId: backstage
+        clientSecret: ${SECRET_BACKSTAGE_OAUTH_CLIENT_SECRET}     
 
 scaffolder:
   defaultAuthor:
